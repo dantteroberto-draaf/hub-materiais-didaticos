@@ -27,7 +27,7 @@ def healthCheck():
     return {"status": "Ok"}
 
 @app.post('/recursos', response_model=schemas.RecursoResponse)
-def criar_recurso(recursoRecebido: schemas.RecursoCreate,
+def registrar_recurso(recursoRecebido: schemas.RecursoCreate,
                   sessao_db: Session = Depends(db.get_db)):
     
     novo_recurso = models.Recurso(**recursoRecebido.model_dump())
