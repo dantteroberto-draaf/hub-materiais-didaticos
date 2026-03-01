@@ -15,3 +15,11 @@ class RecursoResponse(RecursoBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+
+class SmartAssistRequest(BaseModel):
+    titulo: str
+    tipo: str
+
+class SmartAssistResponse(BaseModel):
+    descricao: str
+    tags: list[str]
