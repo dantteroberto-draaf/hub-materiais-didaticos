@@ -2,14 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { Api } from '../../services/api.service';
 import { Recurso } from '../../models/recurso.model';
 
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-gerenciador',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './gerenciador.html',
   styleUrl: './gerenciador.css',
 })
 export class Gerenciador implements OnInit{
   listaRecursos: Recurso[] = [];
+
+  formulario = new FormGroup({
+  titulo: new FormControl(''),
+  tipo: new FormControl(''),
+  link: new FormControl(''),
+  descricao: new FormControl(''),
+  tags: new FormControl('') // Vamos tratar isso como uma string separada por vírgulas por enquanto
+});
 
   constructor(private apiService: Api) {}
 
