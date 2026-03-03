@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Recurso, SmartAssistRequest, SmartAssistResponse } from '../models/recurso.model';
+import { Recurso, RecursoCreate, SmartAssistRequest, SmartAssistResponse } from '../models/recurso.model';
 
 
 @Injectable({
@@ -13,15 +13,15 @@ export class Api {
 
   constructor(private http: HttpClient) { }
 
-  registrarRecurso(recurso: Recurso): Observable<Recurso> {
-    return this.http.post<Recurso>(this.apiUrl, recurso);
+  registrarRecurso(recurso: RecursoCreate): Observable<RecursoCreate> {
+    return this.http.post<RecursoCreate>(this.apiUrl, recurso);
   }
 
-  listarRecursos(): Observable<Recurso[]> {
-    return this.http.get<Recurso[]>(this.apiUrl);
+  listarRecursos(skip: number=0, limit: number=6): Observable<Recurso[]> {
+    return this.http.get<Recurso[]>(`${this.apiUrl}?skip=${skip}&limit=${limit}`);
   }
 
-  editarRecurso(id: number, recurso: Recurso): Observable<Recurso> {
+  editarRecurso(id: number, recurso: RecursoCreate): Observable<Recurso> {
     return this.http.put<Recurso>(`${this.apiUrl}/${id}`, recurso)
   }
 

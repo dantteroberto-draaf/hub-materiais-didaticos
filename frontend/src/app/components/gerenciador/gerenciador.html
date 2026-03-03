@@ -34,12 +34,21 @@
       </div>
 
       <div class="flex gap-4 mt-4">
-        <button type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded transition-colors shadow-sm">
-          Salvar Recurso
+        <button (click)="salvarRecurso()" type="button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded transition-colors shadow-sm">
+          @if (idEmEdicao) {
+            Atualizar Recurso
+          } 
+          @else {
+            Salvar Recurso
+          }
         </button>
-        <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors shadow-sm flex items-center gap-2">
-          ✨ Gerar descrição com IA
-        </button>
+        <button (click)="gerarDescricaoIA()" [disabled]="carregandoIA" type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors shadow-sm flex items-center gap-2 disabled:bg-blue-400 disabled:cursor-not-allowed">
+          @if (carregandoIA) {
+             Pensando...
+          } @else {
+             Gerar descrição com IA
+  }
+</button>
       </div>
     </form>
 
@@ -61,7 +70,11 @@
 
           <div class="mt-5 pt-4 border-t border-gray-100 flex justify-between items-center">
             <a [href]="recurso.link" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Acessar Link ↗</a>
-            <button class="text-gray-400 hover:text-red-500 transition-colors" title="Deletar">🗑️</button>
+            <div class="flex gap-3">
+              <button (click)="prepararEdicao(recurso)" class="text-gray-400 hover:text-blue-500 transition-colors" title="Editar">Editar</button>
+    
+               <button (click)="deletarRecurso(recurso.id!)" class="text-gray-400 hover:text-red-500 transition-colors" title="Deletar">Remover</button>
+            </div>
           </div>
         </div>
       } @empty {
@@ -70,5 +83,26 @@
         </div>
       }
     </div>
+    
+    <div class="flex justify-center items-center gap-4 mt-8 mb-12">
+      <button 
+        (click)="paginaAnterior()" 
+        [disabled]="paginaAtual === 0"
+        class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium">
+        ← Anterior
+      </button>
+      
+      <span class="text-gray-600 font-medium">
+        Página {{ paginaAtual + 1 }}
+      </span>
+      
+      <button 
+        (click)="proximaPagina()" 
+        [disabled]="listaRecursos.length < itensPorPagina"
+        class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium">
+        Próxima →
+      </button>
+    </div>
+    
   </div>
 </div>

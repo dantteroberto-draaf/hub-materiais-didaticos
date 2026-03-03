@@ -40,7 +40,7 @@ def registrar_recurso(recursoRecebido: schemas.RecursoCreate,
     return novo_recurso
 
 @app.get('/recursos', response_model=list[schemas.RecursoResponse])
-def listar_recursos(skip: int=0, limit: int=10,
+def listar_recursos(skip: int=0, limit: int=6,
                     sessao_db: Session = Depends(db.get_db)):
     
     recursos = sessao_db.query(models.Recurso).offset(skip).limit(limit).all()
