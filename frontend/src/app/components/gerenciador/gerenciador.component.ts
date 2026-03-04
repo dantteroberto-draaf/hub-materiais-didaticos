@@ -120,6 +120,7 @@ export class Gerenciador implements OnInit{
         this.carregarRecursos();
         this.formulario.reset();
         this.idEmEdicao = null;
+        this.cdr.detectChanges();
       }
     });
   }
@@ -129,6 +130,7 @@ export class Gerenciador implements OnInit{
         console.log("Salvo com sucesso!", resposta);
         this.carregarRecursos();
         this.formulario.reset();
+        this.cdr.detectChanges();
       },
       error: (erro) => {
         console.log("Erro ao registrar recurso!", erro);
