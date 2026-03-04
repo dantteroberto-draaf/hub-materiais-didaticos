@@ -103,6 +103,10 @@ def smartAssist(titulo_e_tipo: schemas.SmartAssistRequest,):
     logging.info(f'AI Request: Title="{titulo_e_tipo.titulo}", Token Usage={tokens}, Latency={latencia:.2f}s')
 
     texto_limpo = resposta.text.replace('```json', '').replace('```', '').strip()
-    dicionario = json.loads(texto_limpo)
+    try:
+        dicionario = json.loads(texto_limpo)
+    except json.JSONDecodeError:
+        logging.error("Erro ao converter resposta da IA para JSON")
+        raise HTTPException(status_code=502, detail="Erro ao processar resposta da IA")
 
     return dicionario
