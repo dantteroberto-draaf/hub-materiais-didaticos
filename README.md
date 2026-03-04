@@ -10,7 +10,7 @@ Uma aplicação Fullstack desenvolvida para o gerenciamento de materiais didáti
 * **Feedback Visual:** Interface reativa com *loading states* durante o processamento da IA.
 * **Observabilidade e Saúde:** Endpoint de `/health` e logs estruturados de requisições.
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 **Frontend:**
 * Angular (v17+) com controle de fluxo nativo (`@for`, `@if`)
@@ -21,6 +21,33 @@ Uma aplicação Fullstack desenvolvida para o gerenciamento de materiais didáti
 * Python 3
 * FastAPI
 * Integração com Google Gemini (LLM)
+
+---
+
+## Arquitetura do Sistema
+
+* Frontend (Client): Desenvolvido em Angular (v17+), atua como uma Single Page Application (SPA). Ele gerencia o estado da interface, formulários reativos e faz requisições assíncronas para o servidor.
+* Backend (API): Desenvolvido em FastAPI (Python), é o coração lógico do sistema. Ele expõe endpoints RESTful, gerencia a persistência dos dados (CRUD) e atua como uma ponte segura para serviços de terceiros (Google Gemini).
+* Comunicação: A troca de dados entre o Client e a API é feita exclusivamente via protocolo HTTP utilizando o formato JSON.
+
+---
+
+## Prompt Engineering
+Para garantir que a Inteligência Artificial retorne dados precisos e úteis para a plataforma, foi aplicada uma técnica de Prompt Engineering.
+No backend, a IA do Google Gemini é instruída a assumir a persona de um "Assistente Pedagógico". O prompt é construído dinamicamente concatenando o Título e o Tipo do material inseridos pelo usuário. A instrução força a LLM a retornar a resposta em um formato estruturado (JSON contendo uma descrição rica e um array com 3 tags relevantes), garantindo que o Angular consiga injetar os dados automaticamente nos campos do formulário sem quebrar a interface.
+
+---
+
+## Estratégia de Segurança
+Seguindo as melhores práticas de DevSecOps, nenhuma credencial ou chave de API foi "chumbada" (hardcoded) no código-fonte.
+A chave de autenticação do Google Gemini (```GEMINI_API_KEY```) é injetada na aplicação através de variáveis de ambiente. No ambiente de desenvolvimento, utilizamos um arquivo ```.env```, que é estritamente ignorado pelo controle de versão do Git (configurado no ```.gitignore```). Isso previne o vazamento acidental de credenciais em repositórios públicos, garantindo a integridade e segurança do projeto.
+
+---
+
+## Estratégia de Paginação
+Pensando na escalabilidade do sistema e na experiência do usuário (UX), a listagem de materiais não sobrecarrega a rede trazendo todos os registros de uma vez.
+
+Foi implementada uma paginação do lado do servidor (Server-side Pagination). A rota ```GET /recursos``` do FastAPI aceita os parâmetros de Query ```skip``` (deslocamento) e limit (tamanho do lote). O frontend calcula dinamicamente esses valores com base na página atual do usuário, garantindo consultas leves ao banco de dados e uma renderização rápida na tela, mesmo que o volume de materiais cadastrados cresça exponencialmente.
 
 ---
 
