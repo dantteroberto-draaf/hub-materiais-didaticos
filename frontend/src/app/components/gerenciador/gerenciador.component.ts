@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Api } from '../../services/api.service';
 import { Recurso } from '../../models/recurso.model';
 
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-gerenciador',
@@ -16,9 +16,9 @@ export class Gerenciador implements OnInit{
   itensPorPagina: number = 6;
 
   formulario = new FormGroup({
-  titulo: new FormControl(''),
-  tipo: new FormControl(''),
-  link: new FormControl(''),
+  titulo: new FormControl('', [Validators.required]),
+  tipo: new FormControl('', [Validators.required]),
+  link: new FormControl('', [Validators.required]),
   descricao: new FormControl(''),
   tags: new FormControl('')
 });
@@ -93,6 +93,13 @@ export class Gerenciador implements OnInit{
   }
 
   salvarRecurso() {
+    if (this.formulario.invalid) {
+    alert("⚠️ Por favor, preencha os campos obrigatórios: Título, Tipo e Link antes de salvar!");
+    
+    this.formulario.markAllAsTouched(); 
+    
+    return;
+    }
     const formValues = this.formulario.value;
 
     // transformando as tags de string separada por vírgulas para array no formato desejado

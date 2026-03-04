@@ -5,11 +5,11 @@
     <form [formGroup]="formulario" class="bg-white p-6 rounded-lg shadow-md mb-8 flex flex-col gap-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="flex flex-col">
-          <label class="text-sm font-semibold text-gray-600 mb-1">Título</label>
+          <label class="text-sm font-semibold text-gray-600 mb-1">Título <span class="text-red-500">*</span> </label>
           <input type="text" formControlName="titulo" class="border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500 outline-none">
         </div>
         <div class="flex flex-col">
-          <label class="text-sm font-semibold text-gray-600 mb-1">Tipo</label>
+          <label class="text-sm font-semibold text-gray-600 mb-1">Tipo <span class="text-red-500">*</span> </label>
           <select formControlName="tipo" class="border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500 outline-none bg-white">
             <option value="Link">Link</option>
             <option value="PDF">PDF</option>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="flex flex-col">
-        <label class="text-sm font-semibold text-gray-600 mb-1">Link</label>
+        <label class="text-sm font-semibold text-gray-600 mb-1">Link <span class="text-red-500">*</span> </label>
         <input type="url" formControlName="link" class="border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500 outline-none">
       </div>
 
