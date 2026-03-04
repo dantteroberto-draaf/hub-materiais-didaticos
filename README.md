@@ -78,6 +78,10 @@ source venv/bin/activate
 # Instale as dependências
 pip install -r requirements.txt
 ```
+#### Atenção
+
+Banco de Dados: O projeto utiliza PostgreSQL. Certifique-se de ter um banco rodando localmente e atualize a variável url_database no arquivo database.py (ou inclua a URL no seu .env) com as suas credenciais locais (postgresql://usuario:senha@localhost:5432/nome_do_banco).
+
 #### Configuração da Chave da API
 Crie um arquivo chamado ```.env``` na raiz da pasta do backend e adicione a sua chave da API do Gemini:
 ```bash
@@ -109,7 +113,7 @@ O frontend estará acessível no seu navegador em http://localhost:4200.
 
 ```DELETE /recursos/{id}``` - Remove um recurso
 
-```POST /assist``` - Recebe título/tipo e retorna a sugestão da IA (Gemini)
+```POST /recursos/assist``` - Recebe título/tipo e retorna a sugestão da IA (Gemini)
 
 ```GET /health``` - Retorna o status de saúde da API
 
