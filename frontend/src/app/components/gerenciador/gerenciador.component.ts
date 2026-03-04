@@ -32,6 +32,7 @@ export class Gerenciador implements OnInit{
   // roda automaticamente quando o componente é carregado
   ngOnInit(): void {
     this.carregarRecursos();
+    this.cdr.detectChanges();
   }
 
   carregarRecursos() {
