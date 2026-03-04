@@ -60,6 +60,7 @@ Foi implementada uma paginação do lado do servidor (Server-side Pagination). A
 * Node.js e NPM instalados
 * Angular CLI instalado (`npm install -g @angular/cli`)
 * Python 3.9+ instalado
+* PostgreSQL instalado
 
 ### 1. Configurando o Backend (FastAPI)
 
@@ -80,7 +81,7 @@ pip install -r requirements.txt
 ```
 #### Atenção
 
-Banco de Dados: O projeto utiliza PostgreSQL. Certifique-se de ter um banco rodando localmente e atualize a variável url_database no arquivo database.py (ou inclua a URL no seu .env) com as suas credenciais locais (postgresql://usuario:senha@localhost:5432/nome_do_banco).
+Banco de Dados: O projeto utiliza PostgreSQL. Certifique-se de ter um banco rodando localmente e atualize a variável ```url_database``` no arquivo ```database.py``` (ou inclua a URL no seu .env) com as suas credenciais locais (```postgresql://usuario:senha@localhost:5432/nome_do_banco```).
 
 #### Configuração da Chave da API
 Crie um arquivo chamado ```.env``` na raiz da pasta do backend e adicione a sua chave da API do Gemini:
