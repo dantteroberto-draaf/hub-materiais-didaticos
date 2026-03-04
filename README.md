@@ -1,6 +1,9 @@
-# 📚 Hub Inteligente de Recursos Educacionais
+# 📚 V-Library, o Hub Inteligente de Recursos Educacionais
+
 
 Uma aplicação Fullstack desenvolvida para o gerenciamento de materiais didáticos, contando com o auxílio de Inteligência Artificial para gerar descrições e tags automáticas, otimizando o tempo do usuário.
+
+![GIF_VLibrary1-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d6800fbd-ca03-450e-b685-fe8053d0f77b)
 
 ## Funcionalidades
 
